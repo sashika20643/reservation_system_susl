@@ -61,6 +61,11 @@
                             <a class="nav-link" href="/admin">Admin</a>
                         </li>
                         @endif
+                        @if (Auth::check() && Auth::user()->roleNo == -1)
+                        <li class="nav-item">
+                            <a class="nav-link" href="/hodam">Booking detail</a>
+                        </li>
+                        @endif
                         @if (Auth::check() && Auth::user()->roleNo == 2)
                         <li class="nav-item">
                             <a class="nav-link" href="/vc">Booking Details</a>

@@ -522,6 +522,10 @@ if($request->input('property') == 'Agri Farm Dining Room'){
         return view('agricoordinator');
     }
 
+    public function hodam(Request $req){
+        return view('agreeBH.agribusinesshod');
+    }
+
     public function hrcoordinator(Request $req){
         return view('hrcoordinator');
     }

@@ -84,7 +84,8 @@
 
                         <a class="nav-link btn btn-outline-primary" href='afconfirm/{{ $agrsbooking->BookingId }}'>Confirm</a></br>
                         <a class="nav-link btn btn-outline-primary" href='afnotconfirm/{{ $agrsbooking->BookingId }}'>Reject</a>
-
+                        <br>
+                        <a class="nav-link btn btn-outline-primary" href='hodamapprove/{{ $agrsbooking->BookingId }}'>HOD agribussiness Mnagment Approval</a></br>
                     </td>
                 </tr>
             @endforeach

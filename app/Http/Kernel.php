@@ -68,6 +68,9 @@ class Kernel extends HttpKernel
         'VCMiddleware'=> \App\Http\Middleware\VCMiddleware::class,
         'AVUCoordinator'=> \App\Http\Middleware\AVUCoordinator::class,
         'HOD'=> \App\Http\Middleware\HOD::class,
+
+        'HODAgribusinessManagementMiddleware'=> \App\Http\Middleware\HODAgribusinessManagementMiddleware::class,
+
         'DeanHodMiddleware'=> \App\Http\Middleware\DeanHodMiddleware::class,
         'NestCoordinatorMiddleware'=> \App\Http\Middleware\NestCoordinatorMiddleware::class,
         'AgriFarmCoordinatorMiddleware'=> \App\Http\Middleware\AgriFarmCoordinatorMiddleware::class,

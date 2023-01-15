@@ -20,80 +20,80 @@ use App\Mail\RequestRecommendMail;
 class SendEmailVCController extends Controller
 {
   //view agri farm booking details from agri coordinator side
-        public function viewagribooking(Request $request) { 
-        
+        public function viewagribooking(Request $request) {
+
             if($request->input('CheckInDate') != null){
                 $agrsbookings = agrsbooking::whereDate('CheckInDate', $request->input('CheckInDate'))->orderBy('BookingId', 'DESC')->paginate(10);
             }else{
                 $agrsbookings = agrsbooking::orderBy('BookingId', 'DESC')->paginate(10);
             }
-        
 
-            return view('viewagribooking',['agrsbookings'=>$agrsbookings]); 
-        } 
-        
-        
+
+            return view('viewagribooking',['agrsbookings'=>$agrsbookings]);
+        }
+
+
         //view agri booking details in guest side
-        public function viewguestagribooking(Request $request) { 
-                    
-                    
+        public function viewguestagribooking(Request $request) {
+
+
             $GuestId = Auth::id();
 
-            
+
             if($request->input('CheckInDate') != null){
-                
+
                 $agrsbookings = agrsbooking::where('GuestId', '=', [$GuestId])->whereDate('CheckInDate', $request->input('CheckInDate'))->paginate(10);
-        
+
             }else{
-                
+
                 $agrsbookings = agrsbooking::where('GuestId', '=', [$GuestId])->orderBy('BookingId', 'DESC')->paginate(10);
-        
+
             }
 
-            return view('viewguestagribooking',['agrsbookings'=>$agrsbookings]); 
+            return view('viewguestagribooking',['agrsbookings'=>$agrsbookings]);
         }
-    
-    
+
+
         //load agri booking details in vc page
-        public function viewvcagribooking(Request $request) { 
+        public function viewvcagribooking(Request $request) {
 
             if($request->input('CheckInDate') != null){
                 $agrsbookings = agrsbooking::whereDate('CheckInDate', $request->input('CheckInDate'))->orderBy('BookingId', 'DESC')->paginate(10);
             }else{
                 $agrsbookings = agrsbooking::orderBy('BookingId', 'DESC')->paginate(10);
             }
-    
-        
-           
-        
-            return view('viewvcagribooking',['agrsbookings'=>$agrsbookings]); 
-    
+
+
+
+
+            return view('viewvcagribooking',['agrsbookings'=>$agrsbookings]);
+
         }
 
         //view agri booking details in dean/hod side
-        public function viewdeanhodagrisbooking(Request $request) { 
-            
-            
+        public function viewdeanhodagrisbooking(Request $request) {
+
+
             $Recommendation_From = Auth::id();
 
-            
-            if($request->input('CheckInDate') != null){
-                
-                $agrsbookings = agrsbooking::where('Recommendation_From', '=', [$Recommendation_From])->whereDate('CheckInDate', $request->input('CheckInDate'))->paginate(10);
-           
-            }else{
-                
-                $agrsbookings = agrsbooking::where('Recommendation_From', '=', [$Recommendation_From])->orderBy('BookingId', 'DESC')->paginate(10);
-           
-            }
-            
-           
-            
-    
-            return view('viewdeanhodagrisbooking',['agrsbookings'=>$agrsbookings]); 
-            } 
 
-            public function viewreportagribooking(Request $request) { 
+            if($request->input('CheckInDate') != null){
+
+                $agrsbookings = agrsbooking::where('Recommendation_From', '=', [$Recommendation_From])->whereDate('CheckInDate', $request->input('CheckInDate'))->paginate(10);
+
+            }else{
+
+                $agrsbookings = agrsbooking::where('Recommendation_From', '=', [$Recommendation_From])->orderBy('BookingId', 'DESC')->paginate(10);
+
+            }
+
+
+
+
+            return view('viewdeanhodagrisbooking',['agrsbookings'=>$agrsbookings]);
+            }
+
+            public function viewreportagribooking(Request $request) {
 
                 if($request->input('CheckInDate') != null  && $request->input('CheckOutDate') != null){
                     $agrsbookings =DB::table('agrsbookings')
@@ -119,9 +119,9 @@ class SendEmailVCController extends Controller
                     $agrsbookings =DB::table('agrsbookings')
                     ->select('agrsbookings.*')
                     ->paginate(10);
-                  
+
                 }
-        
+
                 // if($request->input('CheckInDate') != null && $request->input('CheckOutDate') != null){
                 //     $agrsbookings = agrsbooking::whereDate('CheckInDate', '>=',  $request->input('CheckInDate'))
                 //     ->whereDate('CheckOutDate', '<=',  $request->input('CheckOutDate'))
@@ -135,11 +135,11 @@ class SendEmailVCController extends Controller
                 // }else{
                 //     $agrsbookings = agrsbooking::orderBy('BookingId', 'DESC')->paginate(10);
                 // }
-            
-    
-                return view('viewreportagribooking',['agrsbookings'=>$agrsbookings]); 
-            } 
-            public function downloadpdf(Request $request) { 
+
+
+                return view('viewreportagribooking',['agrsbookings'=>$agrsbookings]);
+            }
+            public function downloadpdf(Request $request) {
 
 
                 if($request->input('CheckInDate') != null  && $request->input('CheckOutDate') != null){
@@ -166,9 +166,9 @@ class SendEmailVCController extends Controller
                     $agrsbookings =DB::table('agrsbookings')
                     ->select('agrsbookings.*')
                     ->paginate(10);
-                  
+
                 }
-      
+
                 // if($request->input('CheckInDate') != null && $request->input('CheckOutDate') != null){
                 //     $agrsbookings = agrsbooking::whereDate('CheckInDate', '>=',  $request->input('CheckInDate'))
                 //     ->whereDate('CheckOutDate', '<=',  $request->input('CheckOutDate'))
@@ -183,43 +183,43 @@ class SendEmailVCController extends Controller
                 //     $agrsbookings = agrsbooking::get();
                 // }
 
-            
-        
+
+
                 view()->share('agrsbookings',$agrsbookings);
                 $pdf = PDF::loadView('viewagribooking_pdf',compact($agrsbookings));
-                
+
                 return $pdf->download('details.pdf');
-                
-           
-               } 
-        
-               public function downloadmonthpdf(Request $request) { 
-        
-             
+
+
+               }
+
+               public function downloadmonthpdf(Request $request) {
+
+
                 $agrsbookings = agrsbooking::whereMonth('CheckInDate',Carbon::now()->month)->get();
-                
+
                 view()->share('agrsbookings',$agrsbookings);
                 $pdf = PDF::loadView('viewagribooking_pdf',compact($agrsbookings));
-                
+
                 return $pdf->download('details.pdf');
-                 
-           
-               } 
-        
-        
-               public function downloadyearpdf(Request $request) { 
-        
-             
+
+
+               }
+
+
+               public function downloadyearpdf(Request $request) {
+
+
                 $agrsbookings = agrsbooking::whereYear('CheckInDate',Carbon::now()->year)->get();
-            
+
                 view()->share('agrsbookings',$agrsbookings);
                 $pdf = PDF::loadView('viewagribooking_pdf',compact($agrsbookings));
-                
+
                 return $pdf->download('details.pdf');
-             
-        
-           } 
-        
+
+
+           }
+
 
 //confirm booking
             public function confirm(Request $request,$BookingId) {
@@ -261,13 +261,13 @@ class SendEmailVCController extends Controller
                     public function recommend(Request $request,$BookingId) {
 
                         $data = $BookingId;
-        
+
                     $Status = 'Recommended';
                     DB::update('update agrsbookings set Status = ? where BookingId = ?',[$Status,$BookingId]);
                     echo "Record updated successfully.";
                     echo 'Click Here to go back.';
-        
-                
+
+
                     return back()->with('success', 'Updated Successfuly!');
                     }
 
@@ -279,8 +279,8 @@ class SendEmailVCController extends Controller
                         echo "Record updated successfully.
                         ";
                         echo 'Click Here to go back.';
-        
-                        
+
+
                         return back()->with('success', 'Updated Successfuly!');
                         }
 
@@ -288,13 +288,13 @@ class SendEmailVCController extends Controller
                         public function afsapprove(Request $request,$BookingId) {
 
                             $data = $BookingId;
-            
+
                         $Status = 'Approved By Vice Chancellor';
                         DB::update('update agrsbookings set Status = ? where BookingId = ?',[$Status,$BookingId]);
                         echo "Record updated successfully.";
                         echo 'Click Here to go back.';
-            
-                    
+
+
                         return back()->with('success', 'Updated Successfuly!');
                         }
 
@@ -307,12 +307,12 @@ class SendEmailVCController extends Controller
                             echo "Record updated successfully.
                             ";
                             echo 'Click Here to go back.';
-            
-                            
+
+
                             return back()->with('success', 'Updated Successfuly!');
                             }
                             public function addvccomment(Request $request,$BookingId) {
-          
+
                                 $VCComment = $request->input('VCComment');
                                 DB::update('update agrsbookings set VCComment=? where BookingId = ?',[$VCComment,$BookingId]);
                                 echo "Record updated successfully.
@@ -322,7 +322,7 @@ class SendEmailVCController extends Controller
                                 return back()->with('success', 'Message Sent Successfuly!');
                                 }
 
-                        //show selected booking details in vc side    
+                        //show selected booking details in vc side
                         public function showafsvc($id) {
 
                             $users =DB::table('agrsbookings')
@@ -331,7 +331,7 @@ class SendEmailVCController extends Controller
                                     ->where(['agrsbookings.BookingId' => $id])
                                     ->get();
 
-                                
+
                                 return view('afsvc_view',['users'=>$users]);
                                 }
 
@@ -351,15 +351,15 @@ class SendEmailVCController extends Controller
                             public function vcapprove(Request $request,$BookingId) {
                                 $data = $BookingId;
                                 $Status = 'Request Vice Chancellor Approval';
-                                
-                
+
+
                                 DB::update('update agrsbookings set Status = ? where BookingId = ?',[$Status,$BookingId]);
                                 echo "Record updated successfully.
                                 ";
                                 echo 'Click Here to go back.';
-                
+
                                 $email = DB::select('select email from users where roleNo = 2');
-                
+
                                 Mail::to($email)->send(new SendMail($data));
                                 return back()->with('success', 'Message Sent Successfuly!');
                                 }
@@ -370,19 +370,19 @@ class SendEmailVCController extends Controller
                                     ->join('users','users.id','=','agrsbookings.GuestId')
                                     ->where(['agrsbookings.BookingId' => $id])
                                     ->get();
-            
-                                       
+
+
                                         return view('afsdean_view',['users'=>$users]);
                                 }
-        
+
                                 public function addheadcomment(Request $request,$BookingId) {
-                  
+
                                     $HODComment = $request->input('HODComment');
                                     DB::update('update agrsbookings set HODComment=? where BookingId = ?',[$HODComment,$BookingId]);
                                     echo "Record updated successfully.
                                     ";
                                     echo 'Click Here to go back.';
-        
+
                                     return back()->with('success', 'Message Sent Successfuly!');
                                     }
 
@@ -390,20 +390,20 @@ class SendEmailVCController extends Controller
                                     public function getRecommendation(Request $request,$BookingId) {
                                         $data = $BookingId;
                                         $Status = 'Send to Recommendation';
-                                        
-                        
+
+
                                         DB::update('update agrsbookings set Status = ? where BookingId = ?',[$Status,$BookingId]);
                                         echo "Record updated successfully.
                                         ";
                                         echo 'Click Here to go back.';
-            
+
                                         $email =DB::table('agrsbookings')
                                         ->select('users.email')
                                         ->join('users','users.id','=','agrsbookings.Recommendation_From')
                                         ->where(['agrsbookings.BookingId' => $BookingId])
                                         ->get();
-            
-                                       
+
+
                                         Mail::to($email)->send(new RequestRecommendMail($data));
                                         return back()->with('success', 'Message Sent Successfuly!');
                                         }
@@ -415,5 +415,31 @@ class SendEmailVCController extends Controller
         if($state!=1) return redirect()->back()->with('success', 'Somthing went wrong');
         return redirect()->back()->with('success', 'Payment requested invitation send successfully!');
     }
-            
+
+
+
+
+
+    public function afdagribusinesshod_view(Request $request) {
+
+
+        $Recommendation_From = Auth::id();
+
+
+        if($request->input('CheckInDate') != null){
+
+            $agrsbookings = agrsbooking::where('Recommendation_From', '=', [$Recommendation_From])->whereDate('CheckInDate', $request->input('CheckInDate'))->paginate(10);
+
+        }else{
+
+            $agrsbookings = agrsbooking::where('Recommendation_From', '=', [$Recommendation_From])->orderBy('BookingId', 'DESC')->paginate(10);
+
+        }
+
+
+
+
+        return view('agreeBH.afdagribusinesshod_view',['agrsbookings'=>$agrsbookings]);
+        }
+
 }
