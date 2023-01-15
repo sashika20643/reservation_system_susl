@@ -410,11 +410,11 @@ class ViewAFDBookingController extends Controller
 
         if($request->input('CheckInDate') != null){
 
-            $agridbookings = agridbooking::where('Recommendation_From', '=', [$Recommendation_From])->whereDate('CheckInDate', $request->input('CheckInDate'))->orderBy('BookingId', 'DESC')->paginate(10);
+            $agridbookings = agridbooking::whereDate('CheckInDate', $request->input('CheckInDate'))->orderBy('BookingId', 'DESC')->paginate(10);
 
         }else{
 
-            $agridbookings = agridbooking::where('Recommendation_From', '=', [$Recommendation_From])->orderBy('BookingId', 'DESC')->paginate(10);
+            $agridbookings = agridbooking::orderBy('BookingId', 'DESC')->paginate(10);
 
         }
 
@@ -424,4 +424,53 @@ class ViewAFDBookingController extends Controller
 
          return view('agreeBH.viewagribusinesshodbooking',['agridbookings'=>$agridbookings]);
         }
+
+
+        public function gethodamRecommendation(Request $request,$BookingId) {
+            $data = $BookingId;
+            $Status = 'Send to Agri Bussiness Managment HOD Recommendation';
+
+
+            DB::update('update agridbookings set Status = ? where BookingId = ?',[$Status,$BookingId]);
+            echo "Record updated successfully.
+            ";
+            echo 'Click Here to go back.';
+
+            $email =DB::table('users')
+            ->select('email')
+            ->where('roleNo','=','-1')
+            ->get();
+
+
+            Mail::to($email)->send(new RequestRecommendMail($data));
+            return back()->with('success', 'Message Sent Successfuly!');
+            }
+
+
+            public function agribusinesshoddrecommend(Request $request,$BookingId) {
+
+                $data = $BookingId;
+
+            $Status = 'Recommended by Agri Bussiness Managment HOD';
+            DB::update('update agridbookings set Status = ? where BookingId = ?',[$Status,$BookingId]);
+            echo "Record updated successfully.";
+            echo 'Click Here to go back.';
+
+
+            return back()->with('success', 'Updated Successfuly!');
+            }
+
+
+            public function agribusinesshoddnotrecommend(Request $request,$BookingId) {
+
+                $data = $BookingId;
+
+            $Status = 'Not recommended by Agri Bussiness Managment HOD';
+            DB::update('update agridbookings set Status = ? where BookingId = ?',[$Status,$BookingId]);
+            echo "Record updated successfully.";
+            echo 'Click Here to go back.';
+
+
+            return back()->with('success', 'Updated Successfuly!');
+            }
 }

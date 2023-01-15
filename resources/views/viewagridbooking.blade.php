@@ -66,10 +66,15 @@
         <td>
         <a class="nav-link btn btn-outline-primary" href = 'show/{{ $agridbooking->BookingId }}'>View</a></br>
         <a class="nav-link btn btn-outline-primary" href = 'showrecagrid/{{ $agridbooking->BookingId }}'>HOD Approval</a></br>
+
+        <a class="nav-link btn btn-outline-primary" href='hodamdapprove/{{ $agrsbooking->BookingId }}'>HOD Agribussiness Managment Approval</a></br>
+<br>
         <a class="nav-link btn btn-outline-primary" href = 'showvcagrid/{{ $agridbooking->BookingId }}'>VC Approval</a></br>
         <a class="nav-link btn btn-outline-primary" href = 'afdconfirm/request-payment/{{ $agridbooking->BookingId }}'>Request Payment</a></br>
         <a class="nav-link btn btn-outline-primary" href = 'afdconfirm/{{ $agridbooking->BookingId }}'>Confirm</a></br>
         <a class="nav-link btn btn-outline-primary" href = 'afdnotconfirm/{{ $agridbooking->BookingId }}'>Reject</a>
+        <br>
+
         </td>
 
     </tr>

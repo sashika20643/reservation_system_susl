@@ -74,6 +74,8 @@
                            href='showaf/{{ $agrsbooking->BookingId }}'>View</a></br>
                         <a class="nav-link btn btn-outline-primary" href='showrecagri/{{ $agrsbooking->BookingId }}'>HOD
                             Approval</a></br>
+                            <a class="nav-link btn btn-outline-primary" href='hodamapprove/{{ $agrsbooking->BookingId }}'>HOD agribussiness Mnagment Approval</a></br>
+<br>
                         <a class="nav-link btn btn-outline-primary" href='showvcagri/{{ $agrsbooking->BookingId }}'>VC
                             Approval</a></br>
 
@@ -85,7 +87,6 @@
                         <a class="nav-link btn btn-outline-primary" href='afconfirm/{{ $agrsbooking->BookingId }}'>Confirm</a></br>
                         <a class="nav-link btn btn-outline-primary" href='afnotconfirm/{{ $agrsbooking->BookingId }}'>Reject</a>
                         <br>
-                        <a class="nav-link btn btn-outline-primary" href='hodamapprove/{{ $agrsbooking->BookingId }}'>HOD agribussiness Mnagment Approval</a></br>
                     </td>
                 </tr>
             @endforeach

@@ -62,9 +62,9 @@
         <td>
 
         <a class="nav-link btn btn-outline-primary" href = 'showafddean/{{ $agridbooking->BookingId }}'>View</a></br>
-        @if($agridbooking->Status == 'Send to Recommendation')
-        <a class="nav-link btn btn-outline-primary" href = 'afdrecommend/{{ $agridbooking->BookingId }}'>Recommend</a> </br>
-        <a class="nav-link btn btn-outline-primary" href = 'afdnotrecommend/{{ $agridbooking->BookingId }}'>Reject</a>
+        @if($agridbooking->Status == 'Send to Agri Bussiness Managment HOD Recommendation')
+        <a class="nav-link btn btn-outline-primary" href = 'agribusinesshoddrecommend/{{ $agridbooking->BookingId }}'>Recommend</a> </br>
+        <a class="nav-link btn btn-outline-primary" href = 'agribusinesshoddnotrecommend/{{ $agridbooking->BookingId }}'>Reject</a>
         @else
 
         @endif

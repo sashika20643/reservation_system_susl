@@ -71,9 +71,9 @@
 
         <td>
         <a class="nav-link btn btn-outline-primary" href = 'showafdean/{{ $agrsbooking->BookingId }}'>View</a></br>
-        @if($agrsbooking->Status == 'Send to Recommendation')
-        <a class="nav-link btn btn-outline-primary" href = 'afrecommend/{{ $agrsbooking->BookingId }}'>Recommend</a> </br>
-        <a class="nav-link btn btn-outline-primary" href = 'afnotrecommend/{{ $agrsbooking->BookingId }}'>Reject</a>
+        @if($agrsbooking->Status == 'Send to Agri Bussiness Managment HOD Recommendation')
+        <a class="nav-link btn btn-outline-primary" href = 'agribusinesshodrecommend/{{ $agrsbooking->BookingId }}'>Recommend</a> </br>
+        <a class="nav-link btn btn-outline-primary" href = 'agribusinesshodnotrecommend/{{ $agrsbooking->BookingId }}'>Reject</a>
         @else
 
         @endif

@@ -141,7 +141,7 @@ Route::get('/viewdeanhodagridbooking', 'App\Http\Controllers\ViewAFDBookingContr
 
 Route::get('showrecagrid/{id}','App\Http\Controllers\ViewAFDBookingController@getRecommendation');
 Route::get('showvcagrid/{id}','App\Http\Controllers\ViewAFDBookingController@vcapprove');
-Route::get('hodamapprove/{id}','App\Http\Controllers\ViewAFDBookingController@SendHodAMA');
+Route::get('hodamapprove/{id}','App\Http\Controllers\SendEmailVCController@SendHodAMA');
 
 
 //Route::get('/viewhrbooking', 'App\Http\Controllers\ViewHrBookingController@viewhrbooking')->name('viewhrbooking');
@@ -299,7 +299,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
+Route::get('showrecagrid/{id}','App\Http\Controllers\ViewAFDBookingController@getRecommendation');
 
 Route::get('/viewagribusinesshoddbooking', 'App\Http\Controllers\ViewAFDBookingController@viewagribusinesshoddbooking')->name('viewagribusinesshoddbooking');
 Route::get('/afdagribusinesshod_view', 'App\Http\Controllers\SendEmailVCController@afdagribusinesshod_view')->name('afdagribusinesshod_view');
+
+Route::get('agribusinesshodrecommend/{BookingId}','App\Http\Controllers\SendEmailVCController@agribusinesshodrecommend');
+Route::get('agribusinesshodnotrecommend/{BookingId}','App\Http\Controllers\SendEmailVCController@agribusinesshodnotrecommend');
+Route::get('hodamdapprove/{id}','App\Http\Controllers\ViewAFDBookingController@gethodamRecommendation');
+
+Route::get('agribusinesshoddrecommendrecommend/{BookingId}','App\Http\Controllers\ViewAFDBookingController@agribusinesshoddrecommend');
+
+Route::get('agribusinesshoddnotrecommendrecommend/{BookingId}','App\Http\Controllers\ViewAFDBookingController@agribusinesshoddnotrecommend');
 
